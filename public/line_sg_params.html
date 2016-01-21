@@ -1,0 +1,154 @@
+<ul class="opt-row">
+  <li>
+    <input type="checkbox" class="accordion" checked>
+    <i></i>
+    <h4>Chart Types</h4>
+    <div class="opt-group">
+      <div ng-repeat="(key, value) in $root.editorLine.label">
+          <div ng-if="key != 'data0'" >
+            <div class="form-group">
+              <label>{{ value }}:</label>
+		    <select ng-model="vis.params.configLine.type[key]" class="form-control">
+		      <option ng-repeat="option in $root.editorLine.typeOptions" value="{{option}}">{{option}}</option>
+		    </select>
+            </div>
+          </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <input type="checkbox" class="accordion" checked>
+    <i></i>
+    <h4>Chart Group</h4>
+    <div class="opt-group">
+            <div class="form-group">
+		    <select ng-model="vis.params.configLine.grouped" class="form-control">
+		      <option ng-repeat="option in $root.editorLine.group" value="{{option}}">{{option}}</option>
+		    </select>
+            </div>
+    </div>
+  </li>
+  <li>
+    <input type="checkbox" class="accordion" checked>
+    <i></i>
+    <h4>Data Labels</h4>
+    <div class="opt-group">
+      <div ng-repeat="(key, value) in $root.editorLine.label">
+          <div ng-if="key != 'data0'" >
+            <div class="form-group">
+              <label>{{ value }}:</label>
+		    <input type="text" ng-model="vis.params.configLine.names[key]" class="form-control"/>
+            </div>
+          </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <input type="checkbox" class="accordion" checked>
+    <i></i>
+    <h4>Data Colors</h4>
+    <div class="opt-group">
+      <div ng-repeat="(key, value) in $root.editorLine.label">
+          <div ng-if="key != 'data0'" >
+            <div class="form-group">
+              <label>{{ value }}:</label>
+		    <input type="color" ng-model="vis.params.configLine.colors[key]" class="form-control"/>
+            </div>
+          </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <input type="checkbox" class="accordion" checked>
+    <i></i>
+    <h4>Data Axis Y and Y2</h4>
+    <div class="opt-group">
+      Enable Y2&nbsp;<input type="checkbox" class="disgrp" ng-model="vis.params.configLine.enableY2">
+      <div class="disgrp" ng-repeat="(key, value) in $root.editorLine.label">
+          <div ng-if="key != 'data0'" >
+            <div class="form-group">
+              <label>{{ value }}:</label>
+		    <select ng-model="vis.params.configLine.axisy[key]" class="form-control">
+		      <option ng-repeat="option in $root.editorLine.axisy" value="{{option}}">{{option}}</option>
+		    </select>
+            </div>
+          </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <input type="checkbox" class="accordion" checked>
+    <i></i>
+    <h4>Format Axis Y and Y2</h4>
+    <div class="opt-group">
+            <div class="form-group">
+              <label>Axis Y:</label>
+		    <select ng-model="vis.params.configLine.formaty" class="form-control">
+		      <option ng-repeat="(key, value) in $root.editorLine.typeformat" value="{{key}}">{{value}}</option>
+		    </select>
+            </div>
+            <div class="form-group">
+              <label>Axis Y2:</label>
+		    <select ng-model="vis.params.configLine.formaty2" class="form-control">
+		      <option ng-repeat="(key, value) in $root.editorLine.typeformat" value="{{key}}">{{value}}</option>
+		    </select>
+            </div>
+    </div>
+  </li>
+  <li>
+    <input type="checkbox" class="accordion" checked>
+    <i></i>
+    <h4>Format Axis X</h4>
+    <div class="opt-group">
+	    <a href="https://github.com/mbostock/d3/wiki/Time-Formatting" class="linkd3" target="_blank" style="color:blue !important;">D3 Wiki Time Formatting</a>
+            <div class="form-group">
+              <label>Axis X:</label>
+		    <input type="text" ng-model="vis.params.configLine.formatx" ng-init="vis.params.configLine.formatx='%Y-%m-%d'" class="form-control"/>
+            </div>
+    </div>
+  </li>
+  <li>
+    <input type="checkbox" class="accordion" checked>
+    <i></i>
+    <h4>Grid Line Y</h4>
+    <div class="opt-group">
+            <div class="form-group">
+              <label>Value:</label>
+		    <input type="text" ng-model="vis.params.configLine.gridyval" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label>Text:</label>
+		    <input type="text" ng-model="vis.params.configLine.gridytxt" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label>Postion:</label>
+		    <select ng-model="vis.params.configLine.gridypos" class="form-control">
+		      <option ng-repeat="option in $root.editorLine.gridpos" value="{{option}}">{{option}}</option>
+		    </select>
+            </div>
+    </div>
+  </li>
+  <li>
+    <input type="checkbox" class="accordion" checked>
+    <i></i>
+    <h4>Range Axis Y and Y2</h4>
+    <div class="opt-group">
+            <div class="form-group">
+              <label>min Y:</label>
+		    <input type="text" ng-model="vis.params.configLine.rangeminy" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label>max Y:</label>
+		    <input type="text" ng-model="vis.params.configLine.rangemaxy" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label>min Y2:</label>
+		    <input type="text" ng-model="vis.params.configLine.rangeminy2" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label>max Y2:</label>
+		    <input type="text" ng-model="vis.params.configLine.rangemaxy2" class="form-control"/>
+            </div>
+    </div>
+  </li>
+</ul>

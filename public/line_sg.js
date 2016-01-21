@@ -1,0 +1,55 @@
+define(function (require) {
+  
+  // we need to load the css ourselves
+  require('plugins/line_sg/line_sg.less');
+
+  // we also need to load the controller and used by the template
+  require('plugins/line_sg/line_sg_controller');
+
+  // register the provider with the visTypes registry
+  require('ui/registry/vis_types').register(MetricVisProvider);
+
+  function MetricVisProvider(Private) {
+    var TemplateVisType = Private(require('ui/template_vis_type/TemplateVisType'));
+    var Schemas = Private(require('ui/Vis/Schemas'));
+
+    // return the visType object, which kibana will use to display and configure new
+    // Vis object of this type.
+    return new TemplateVisType({
+      name: 'line-sg',
+      title: 'Multi Line-sg',
+      description: 'Display as Multi Chart Timeseries',
+      icon: 'fa-diamond',
+      template: require('plugins/line_sg/line_sg.html'),
+      params: {
+        defaults: {
+          configLine: {}
+        },
+        editor: require('plugins/line_sg/line_sg_params.html')
+      },
+      schemas: new Schemas([
+        {
+          group: 'metrics',
+          name: 'metric',
+          title: 'Y-Axis',
+          min: 1,
+          aggFilter: '!std_dev',
+          defaults: [
+            { schema: 'metric', type: 'count' }
+          ]
+        },
+        {
+          group: 'buckets',
+          name: 'segment',
+          title: 'X-Axis',
+          min: 0,
+          max: 1,
+          aggFilter: 'date_histogram'
+        }
+      ])
+    });
+  }
+
+  // export the provider so that the visType can be required with Private()
+  return MetricVisProvider;
+});
