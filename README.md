@@ -19,7 +19,7 @@ Ce plugin permet la création de multiples graphiques sur la même vue:
 
 Contenu
 -------
-
+```
 .
 +-- index.js
 +-- package.json
@@ -34,7 +34,7 @@ Contenu
     +-- line_sg_params.html
     +-- styles
         +-- accordion.css
-
+```
 Le plugin à été creer à partir des librairies Kibana et basé sur le framework Angularjs.
 
 Liste des librairies ajoutées:
