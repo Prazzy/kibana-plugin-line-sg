@@ -35,7 +35,7 @@ Contenu
     +-- styles
         +-- accordion.css
 ```
-Le plugin à été creer à partir des librairies Kibana et basé sur le framework Angularjs.
+Le plugin a été créé à partir des librairies Kibana et basé sur le framework Angularjs.
 
 Liste des librairies ajoutées:
 
