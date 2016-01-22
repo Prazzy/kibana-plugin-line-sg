@@ -3,10 +3,10 @@ kibana-plugin-line
 ==================
 
 
-Introcduction
+Introduction
 -------------
 
-Ce plugin permet la création de multiples graphiques sur la même vue:
+Ce plugin permet la création d'une vue avec plusieurs types de graphiques:
 
 * Choix du type de graphiques
 * Définition du label des courbes
