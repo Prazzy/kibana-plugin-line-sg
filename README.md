@@ -1,4 +1,3 @@
-```
 
 kibana-plugin-line
 ==================
@@ -22,19 +21,19 @@ Contenu
 -------
 
 .
-├── index.js
-├── package.json
-└── public
-    ├── bower_components
-    │   ├── c3
-    │   └── moment
-    ├── line_sg_controller.js
-    ├── line_sg.html
-    ├── line_sg.js
-    ├── line_sg.less
-    ├── line_sg_params.html
-    └── styles
-        └── accordion.css
++-- index.js
++-- package.json
++-- public
+    +-- bower_components
+    ¦   +-- c3
+    ¦   +-- moment
+    +-- line_sg_controller.js
+    +-- line_sg.html
+    +-- line_sg.js
+    +-- line_sg.less
+    +-- line_sg_params.html
+    +-- styles
+        +-- accordion.css
 
 Le plugin à été creer à partir des librairies Kibana et basé sur le framework Angularjs.
 
@@ -48,12 +47,12 @@ Installation
 ------------
 
 **1)** Ajouter le plugin 
-
+```
 	$ cd <path>/kibana/src/plugins
 	$ git clone http://repo.pointp.saint-gobain.net/sdo/kibana-plugin-line.git line-sg	
-
+```
 
 **2)** Redémarrer kibana 
-
+```
 	$ sudo supervisorctl restart kibana
 ```
