@@ -49,7 +49,7 @@ Installation
 **1)** Ajouter le plugin 
 ```
 	$ cd <path>/kibana/src/plugins
-	$ git clone http://repo.pointp.saint-gobain.net/sdo/kibana-plugin-line.git line-sg	
+	$ git clone <depot> line-sg	
 ```
 
 **2)** Redémarrer kibana 
