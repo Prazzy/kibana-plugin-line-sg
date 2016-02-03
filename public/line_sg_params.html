@@ -22,7 +22,7 @@
     <h4>Chart Group</h4>
     <div class="opt-group">
             <div class="form-group">
-		    <select ng-model="vis.params.configLine.grouped" class="form-control">
+		    <select ng-model="vis.params.configLinegrouped" class="form-control">
 		      <option ng-repeat="option in $root.editorLine.group" value="{{option}}">{{option}}</option>
 		    </select>
             </div>
@@ -103,7 +103,7 @@
 	    <a href="https://github.com/mbostock/d3/wiki/Time-Formatting" class="linkd3" target="_blank" style="color:blue !important;">D3 Wiki Time Formatting</a>
             <div class="form-group">
               <label>Axis X:</label>
-		    <input type="text" ng-model="vis.params.configLine.formatx" ng-init="vis.params.configLine.formatx='%Y-%m-%d'" class="form-control"/>
+		    <input type="text" ng-model="vis.params.configLine.formatx" ng-init="vis.params.configLine.formatx= ( typeof vis.params.configLine.formatx  != 'undefined') ? vis.params.configLine.formatx : '%Y-%m-%d'" class="form-control"/>
             </div>
     </div>
   </li>
@@ -124,6 +124,12 @@
               <label>Postion:</label>
 		    <select ng-model="vis.params.configLine.gridypos" class="form-control">
 		      <option ng-repeat="option in $root.editorLine.gridpos" value="{{option}}">{{option}}</option>
+		    </select>
+            </div>
+            <div class="form-group">
+              <label>Color:</label>
+		    <select ng-model="vis.params.configLine.gridycolor" class="form-control">
+		      <option ng-repeat="(key, value) in $root.editorLine.gridcolor" value="{{value}}">{{key}}</option>
 		    </select>
             </div>
     </div>

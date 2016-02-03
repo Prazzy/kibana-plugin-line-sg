@@ -23,7 +23,8 @@ define(function (require) {
       template: require('plugins/line_sg/line_sg.html'),
       params: {
         defaults: {
-          configLine: {}
+          configLine: {},
+          configLinegrouped: "none"
         },
         editor: require('plugins/line_sg/line_sg_params.html')
       },
