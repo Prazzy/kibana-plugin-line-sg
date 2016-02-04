@@ -56,7 +56,11 @@ define(function (require) {
         config.axis.y2.max = ( typeof $scope.vis.params.configLine.rangemaxy2 != "undefined" ) ? $scope.vis.params.configLine.rangemaxy2 : "";
 	config.grid = {};
 	config.grid.y = ( typeof $scope.vis.params.configLine.gridyval != "undefined" ) ? {lines: [{value: $scope.vis.params.configLine.gridyval, text: $scope.vis.params.configLine.gridytxt, position: $scope.vis.params.configLine.gridypos, class: $scope.vis.params.configLine.gridycolor}]} : {};
-       $scope.chart = c3.generate(config);
+        $scope.chart = c3.generate(config);
+	var elem = $(idchart[0]).closest('div.visualize-chart');
+        var h = elem.height();
+        var w = elem.width();
+        $scope.chart.resize({height: h - 50, width: w - 50});
     }
 
     $scope.processTableGroups = function (tableGroups) {
