@@ -5,14 +5,12 @@
     <h4>Chart Types</h4>
     <div class="opt-group">
       <div ng-repeat="(key, value) in $root.editorLine.label">
-          <div ng-if="key != 'data0'" >
             <div class="form-group">
               <label>{{ value }}:</label>
-		    <select ng-model="vis.params.configLine.type[key]" class="form-control">
+		    <select ng-model="vis.params.configLine.type[value]" class="form-control">
 		      <option ng-repeat="option in $root.editorLine.typeOptions" value="{{option}}">{{option}}</option>
 		    </select>
             </div>
-          </div>
       </div>
     </div>
   </li>
@@ -34,12 +32,10 @@
     <h4>Data Labels</h4>
     <div class="opt-group">
       <div ng-repeat="(key, value) in $root.editorLine.label">
-          <div ng-if="key != 'data0'" >
             <div class="form-group">
               <label>{{ value }}:</label>
-		    <input type="text" ng-model="vis.params.configLine.names[key]" class="form-control"/>
+		    <input type="text" ng-model="vis.params.configLine.names[value]" class="form-control"/>
             </div>
-          </div>
       </div>
     </div>
   </li>
@@ -49,12 +45,10 @@
     <h4>Data Colors</h4>
     <div class="opt-group">
       <div ng-repeat="(key, value) in $root.editorLine.label">
-          <div ng-if="key != 'data0'" >
             <div class="form-group">
               <label>{{ value }}:</label>
-		    <input type="color" ng-model="vis.params.configLine.colors[key]" class="form-control"/>
+		    <input type="color" ng-model="vis.params.configLine.colors[value]" class="form-control"/>
             </div>
-          </div>
       </div>
     </div>
   </li>
@@ -65,14 +59,12 @@
     <div class="opt-group">
       Enable Y2&nbsp;<input type="checkbox" class="disgrp" ng-model="vis.params.configLine.enableY2">
       <div class="disgrp" ng-repeat="(key, value) in $root.editorLine.label">
-          <div ng-if="key != 'data0'" >
             <div class="form-group">
               <label>{{ value }}:</label>
-		    <select ng-model="vis.params.configLine.axisy[key]" class="form-control">
+		    <select ng-model="vis.params.configLine.axisy[value]" class="form-control">
 		      <option ng-repeat="option in $root.editorLine.axisy" value="{{option}}">{{option}}</option>
 		    </select>
             </div>
-          </div>
       </div>
     </div>
   </li>
@@ -103,7 +95,7 @@
 	    <a href="https://github.com/mbostock/d3/wiki/Time-Formatting" class="linkd3" target="_blank" style="color:blue !important;">D3 Wiki Time Formatting</a>
             <div class="form-group">
               <label>Axis X:</label>
-		    <input type="text" ng-model="vis.params.configLine.formatx" ng-init="vis.params.configLine.formatx= ( typeof vis.params.configLine.formatx  != 'undefined') ? vis.params.configLine.formatx : '%Y-%m-%d'" class="form-control"/>
+		    <input type="text" ng-model="vis.params.configLine.formatx" ng-init="vis.params.configLine.formatx = ( vis.params.configLine.formatx.length > 0 ) ? vis.params.configLine.formatx : '%Y-%m-%d'" class="form-control"/>
             </div>
     </div>
   </li>

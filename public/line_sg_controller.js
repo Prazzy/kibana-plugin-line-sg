@@ -5,7 +5,7 @@ define(function (require) {
   var moment = require('./bower_components/moment/moment');
   var module = require('ui/modules').get('kibana/line_sg', ['kibana']);
 
-  module.controller('KbnLineVisController', function ($scope, $element, Private) {
+  module.controller('KbnLineVisController', function ($scope, $element, $window, Private) {
 
     var tabifyAggResponse = Private(require('ui/agg_response/tabify/tabify'));
 
@@ -17,7 +17,6 @@ define(function (require) {
     $scope.$root.editorLine.gridpos = ["start","middle","end"];
     $scope.$root.editorLine.gridcolor = {"black":"gridblack","grey":"gridgrey","blue":"gridblue","green":"gridgreen","red":"gridred","yellow":"gridyellow"};
 
-
     var fty = [];
     fty[0] = { format: function (d) { return moment((d-3600)*1000).format("HH:mm"); }};
     fty[1] = { format: function (d) { var formatValue = d3.format(".3s"); return formatValue(d) + "%"; }};
@@ -26,9 +25,11 @@ define(function (require) {
     fty[4] = { format: function (d) { var formatValue = d3.format(",.0f"); return formatValue(d) + "€"; }};
 
     var metrics = $scope.metrics = [];
-    var label = {};
+    var label = [];
     var group = [];
     var idchart = "";
+    var hold ="";
+    var wold= "";
     moment.locale('fr');
 
     $scope.chart = null;
@@ -42,7 +43,7 @@ define(function (require) {
         config.data.columns = metrics;
 	config.data.names = $scope.vis.params.configLine.names;
         config.data.types = $scope.vis.params.configLine.type;
-        config.data.groups = ( $scope.vis.params.configLinegrouped != "none" ) ? [group] : "";
+	config.data.groups = ( $scope.vis.params.configLinegrouped != "none" ) ? [group] : "";
         config.data.colors = $scope.vis.params.configLine.colors;
         config.data.axes = $scope.vis.params.configLine.axisy;
         config.axis = {};
@@ -56,23 +57,27 @@ define(function (require) {
 	config.grid = {};
 	config.grid.y = ( typeof $scope.vis.params.configLine.gridyval != "undefined" ) ? {lines: [{value: $scope.vis.params.configLine.gridyval, text: $scope.vis.params.configLine.gridytxt, position: $scope.vis.params.configLine.gridypos, class: $scope.vis.params.configLine.gridycolor}]} : {};
        $scope.chart = c3.generate(config);
-       var h = $(idchart[0]).closest('div.visualize-chart').height();
-       var w = $(idchart[0]).closest('div.visualize-chart').width();
-       $scope.chart.resize({height: h - 50, width: w - 50});
+//       var h = $(idchart[0]).closest('div.visualize-chart').height();
+//       var w = $(idchart[0]).closest('div.visualize-chart').width();
+//       $scope.chart.resize({height: h - 50, width: w - 50});
     }
 
     $scope.processTableGroups = function (tableGroups) {
+      var label = [];
       tableGroups.tables.forEach(function (table) {
         table.columns.forEach(function (column, i) {
-               var tmp = [];
+                var tmp = [];
 		var data = table.rows;
-		var d = "data" + i;
-		tmp.push(d);
+		if (i < 1){
+			tmp.push('data0');
+		} else {
+			tmp.push(column.title);
+			label[(i - 1)] = column.title;
+			group.push(column.title);
+		}
 		for (var key in data) {
           		tmp.push(data[key][i]);
 		};
-		label[d] = column.title;
-		group.push(d);
 		metrics.push(tmp);
 	});
       });
@@ -89,40 +94,19 @@ define(function (require) {
 
     $scope.$watch(
          function () {
-           var h = $(idchart[0]).closest('div.visualize-chart').height();
-           var w = $(idchart[0]).closest('div.visualize-chart').width();
-
-           if (idchart.length > 0 && h > 0 && w > 0) {
-            	 $scope.chart.resize({height: h - 50, width: w - 50});
-           }
+	   var elem = $(idchart[0]).closest('div.visualize-chart');
+           var h = elem.height();
+           var w = elem.width();
+	   if (idchart.length > 0 && h > 0 && w > 0) {
+		   if (hold != h || wold != w) {
+	            	 $scope.chart.resize({height: h - 50, width: w - 50});
+	           	 hold = elem.height();
+	          	 wold = elem.width();
+		   }
+           }      
          }, 
          true
     );
-   // $scope.$watch($scope.getWindowDimensions, function (newValue, oldValue) {
-   //              var h = $(idchart[0]).closest('div.visualize-chart').height();
-   //              var w = $(idchart[0]).closest('div.visualize-chart').width();
-   //     	 if (idchart.length > 0 && h > 0 && w > 0) {
-   //         	 	$scope.chart.resize({height: h - 50, width: w - 50});
-   //     	 }
-   // }, true);
-   //
-
-	//function Dimensions($scope) {
-	//    $scope.docWidth = 0;
-	//    $scope.docHeight = 0;
-	//}
-	//
-	///*javascript external to angular applies to a scope*/
-	//
-	//function tellAngular() {
-	//                 var h = $(idchart[0]).closest('div.visualize-chart').height();
-	//                 var w = $(idchart[0]).closest('div.visualize-chart').width();
-	//                 if (idchart.length > 0 && h > 0 && w > 0) {
-	//                        $scope.chart.resize({height: h - 50, width: w - 50});
-	//                 }
-	//
-	//}
-	//window.onresize = tellAngular;
 
   })
 });
