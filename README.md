@@ -6,7 +6,7 @@ kibana-plugin-line
 Introduction
 -------------
 
-Ce plugin permet la création d'une vue avec plusieurs types de graphiques sur Kibana Version 4.3.0:
+Ce plugin permet la création d'une vue avec plusieurs types de graphiques sur Kibana Version 4.2.2, 4.3.0, 4.4.0:
 
 * Choix du type de graphiques
 * Définition du label des courbes
