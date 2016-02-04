@@ -57,9 +57,6 @@ define(function (require) {
 	config.grid = {};
 	config.grid.y = ( typeof $scope.vis.params.configLine.gridyval != "undefined" ) ? {lines: [{value: $scope.vis.params.configLine.gridyval, text: $scope.vis.params.configLine.gridytxt, position: $scope.vis.params.configLine.gridypos, class: $scope.vis.params.configLine.gridycolor}]} : {};
        $scope.chart = c3.generate(config);
-//       var h = $(idchart[0]).closest('div.visualize-chart').height();
-//       var w = $(idchart[0]).closest('div.visualize-chart').width();
-//       $scope.chart.resize({height: h - 50, width: w - 50});
     }
 
     $scope.processTableGroups = function (tableGroups) {
