@@ -1,5 +1,6 @@
 define(function (require) {
 
+
   var d3 = require('d3');
   var c3 = require('./bower_components/c3');
   var moment = require('./bower_components/moment/moment');
@@ -13,7 +14,7 @@ define(function (require) {
     $scope.$root.editorLine.axisy = ["y","y2"];
     $scope.$root.editorLine.group = ["none","grouped"];
     $scope.$root.editorLine.typeOptions = ["line","bar","spline","step","area","area-step","area-spline"];
-    $scope.$root.editorLine.typeformat = ["Time","Percent","Second","Octet","Euro"];
+    $scope.$root.editorLine.typeformat = ["Time","Percents","Seconds","Octets","Euros"];
     $scope.$root.editorLine.gridpos = ["start","middle","end"];
     $scope.$root.editorLine.gridcolor = {"black":"gridblack","grey":"gridgrey","blue":"gridblue","green":"gridgreen","red":"gridred","yellow":"gridyellow"};
 
@@ -25,7 +26,7 @@ define(function (require) {
     fty[4] = { format: function (d) { var formatValue = d3.format(",.0f"); return formatValue(d) + "€"; }};
 
     var metrics = $scope.metrics = [];
-    var label = [];
+    var label = {};
     var group = [];
     var idchart = "";
     var hold ="";
@@ -64,20 +65,19 @@ define(function (require) {
     }
 
     $scope.processTableGroups = function (tableGroups) {
-      var label = [];
       tableGroups.tables.forEach(function (table) {
         table.columns.forEach(function (column, i) {
-                var tmp = [];
+        	var tmp = [];
 		var data = table.rows;
-		if (i < 1){
-			tmp.push('data0');
-		} else {
+		if (i > 0){
+			group[i] = column.title;
+			label[column.title] = column.title;
 			tmp.push(column.title);
-			label[(i - 1)] = column.title;
-			group.push(column.title);
+		} else {
+			tmp.push('data0');
 		}
 		for (var key in data) {
-          		tmp.push(data[key][i]);
+        	  	tmp.push(data[key][i]);
 		};
 		metrics.push(tmp);
 	});

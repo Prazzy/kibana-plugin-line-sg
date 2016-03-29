@@ -7,7 +7,7 @@
       <div ng-repeat="(key, value) in $root.editorLine.label">
             <div class="form-group">
               <label>{{ value }}:</label>
-		    <select ng-model="vis.params.configLine.type[value]" class="form-control">
+		    <select ng-model="vis.params.configLine.type[key]" class="form-control">
 		      <option ng-repeat="option in $root.editorLine.typeOptions" value="{{option}}">{{option}}</option>
 		    </select>
             </div>
@@ -34,7 +34,7 @@
       <div ng-repeat="(key, value) in $root.editorLine.label">
             <div class="form-group">
               <label>{{ value }}:</label>
-		    <input type="text" ng-model="vis.params.configLine.names[value]" class="form-control"/>
+		    <input type="text" ng-model="vis.params.configLine.names[key]" class="form-control"/>
             </div>
       </div>
     </div>
@@ -47,7 +47,7 @@
       <div ng-repeat="(key, value) in $root.editorLine.label">
             <div class="form-group">
               <label>{{ value }}:</label>
-		    <input type="color" ng-model="vis.params.configLine.colors[value]" class="form-control"/>
+		    <input type="color" ng-model="vis.params.configLine.colors[key]" class="form-control"/>
             </div>
       </div>
     </div>
@@ -61,7 +61,7 @@
       <div class="disgrp" ng-repeat="(key, value) in $root.editorLine.label">
             <div class="form-group">
               <label>{{ value }}:</label>
-		    <select ng-model="vis.params.configLine.axisy[value]" class="form-control">
+		    <select ng-model="vis.params.configLine.axisy[key]" class="form-control">
 		      <option ng-repeat="option in $root.editorLine.axisy" value="{{option}}">{{option}}</option>
 		    </select>
             </div>
