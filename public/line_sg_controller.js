@@ -46,9 +46,11 @@ define(function (require) {
         config.data.types = $scope.vis.params.configLine.type;
 	config.data.groups = ( $scope.vis.params.configLinegrouped != "none" ) ? [group] : "";
         config.data.colors = $scope.vis.params.configLine.colors;
+	config.data.color = ( $scope.vis.params.configLine.threshold_enable ) ? function (color, d) { return d.id && d.id === $scope.vis.params.configLine_threshold_data && d.value > $scope.vis.params.configLine_threshold_value ? $scope.vis.params.configLine_threshold_color : color; } : {};
         config.data.axes = $scope.vis.params.configLine.axisy;
         config.axis = {};
-        config.axis.x = {type: 'timeseries', tick: {format: ( typeof $scope.vis.params.configLine.formatx != "undefined" ) ? $scope.vis.params.configLine.formatx : "%d-%m-%Y" }};
+        config.axis.rotated = $scope.vis.params.configLine.rotated;
+        config.axis.x = {type: 'timeseries', tick: { rotate: $scope.vis.params.configLine_xrotate, format: ( typeof $scope.vis.params.configLine.formatx != "undefined" ) ? $scope.vis.params.configLine.formatx : "%d-%m-%Y" }};
         config.axis.y = {tick: ( typeof $scope.vis.params.configLine.formaty != "undefined" ) ? fty[$scope.vis.params.configLine.formaty] : "{}" };
         config.axis.y.min = ( typeof $scope.vis.params.configLine.rangeminy != "undefined" ) ? $scope.vis.params.configLine.rangeminy : "";
         config.axis.y.max = ( typeof $scope.vis.params.configLine.rangemaxy != "undefined" ) ? $scope.vis.params.configLine.rangemaxy : "";

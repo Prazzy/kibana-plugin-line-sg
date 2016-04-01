@@ -24,7 +24,11 @@ define(function (require) {
       params: {
         defaults: {
           configLine: {},
-          configLinegrouped: "none"
+	  configLine_threshold_data: '',
+	  configLine_threshold_value: 0,
+	  configLine_threshold_color: "#000000",
+          configLinegrouped: "none",
+	  configLine_xrotate: 0
         },
         editor: require('plugins/line_sg/line_sg_params.html')
       },
