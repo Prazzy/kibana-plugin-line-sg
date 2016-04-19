@@ -6,7 +6,7 @@ kibana-plugin-line
 Introduction
 -------------
 
-Ce plugin permet la création d'une vue avec plusieurs types de graphiques sur Kibana Version 4.2.2, 4.3.0, 4.4.0:
+Ce plugin permet la création d'une vue avec plusieurs types de graphiques sur Kibana Version 4.2.2, 4.3.0, 4.4.0, 4.5.0 :
 
 * Choix du type de graphiques
 * Définition du label des courbes
@@ -15,6 +15,7 @@ Ce plugin permet la création d'une vue avec plusieurs types de graphiques sur K
 * Format des axes Y et X
 * Ajout d'une ligne sur l'axe Y 
 * Modification du range Y
+* Seuil de couleur
 
 
 Contenu
@@ -48,11 +49,19 @@ Installation
 
 **1)** Ajouter le plugin 
 ```
-	$ cd <path>/kibana/src/plugins
+	$ cd <path>/kibana/installedPlugins
 	$ git clone <depot> line-sg	
 ```
 
 **2)** Redémarrer kibana 
 ```
 	$ sudo supervisorctl restart kibana
+```
+
+
+Désinstallation
+---------------
+
+```
+bin/kibana plugin  --remove line_sg
 ```
