@@ -49,7 +49,7 @@ define(function (require) {
           title: 'X-Axis',
           min: 0,
           max: 1,
-          aggFilter: 'date_histogram'
+          aggFilter: ['terms','date_histogram']
         }
       ])
     });
