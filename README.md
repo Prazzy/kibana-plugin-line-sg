@@ -47,15 +47,9 @@ Liste des librairies ajoutées:
 Installation
 ------------
 
-**1)** Ajouter le plugin 
 ```
 	$ cd <path>/kibana/installedPlugins
 	$ git clone <depot> line-sg	
-```
-
-**2)** Redémarrer kibana 
-```
-	$ sudo supervisorctl restart kibana
 ```
 
 
@@ -63,5 +57,5 @@ Désinstallation
 ---------------
 
 ```
-bin/kibana plugin  --remove line_sg
+	$ bin/kibana plugin  --remove line_sg
 ```
