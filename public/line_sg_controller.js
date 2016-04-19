@@ -1,6 +1,5 @@
 define(function (require) {
 
-
   var d3 = require('d3');
   var c3 = require('./bower_components/c3');
   var moment = require('./bower_components/moment/moment');
@@ -10,6 +9,7 @@ define(function (require) {
 
     var tabifyAggResponse = Private(require('ui/agg_response/tabify/tabify'));
 
+    // Initialization of plugin settings
     $scope.$root.editorLine = {}; 
     $scope.$root.editorLine.axisy = ["y","y2"];
     $scope.$root.editorLine.group = ["none","grouped"];
@@ -18,6 +18,7 @@ define(function (require) {
     $scope.$root.editorLine.gridpos = ["start","middle","end"];
     $scope.$root.editorLine.gridcolor = {"black":"gridblack","grey":"gridgrey","blue":"gridblue","green":"gridgreen","red":"gridred","yellow":"gridyellow"};
 
+    // Choice of the data format
     var fty = [];
     fty[0] = { format: function (d) { return moment((d-3600)*1000).format("HH:mm"); }};
     fty[1] = { format: function (d) { var formatValue = d3.format(".3s"); return formatValue(d) + "%"; }};
@@ -25,6 +26,7 @@ define(function (require) {
     fty[3] = { format: function (d) { var formatValue = d3.format(".3s"); return formatValue(d) + "o"; }};
     fty[4] = { format: function (d) { var formatValue = d3.format(",.0f"); return formatValue(d) + "€"; }};
 
+    // Initialization of variables
     var metrics = $scope.metrics = [];
     var label = {};
     var group = [];
@@ -33,6 +35,7 @@ define(function (require) {
     var wold= "";
     moment.locale('fr');
 
+    // Generation graphics C3.js
     $scope.chart = null;
     $scope.showGraph = function() {
 	console.log("----chart generator----");
@@ -87,6 +90,7 @@ define(function (require) {
       $scope.$root.editorLine.label = label;
     };
 
+    // Get query results ElasticSearch
     $scope.$watch('esResponse', function (resp) {
       if (resp) {
         metrics.length = 0;
@@ -95,6 +99,7 @@ define(function (require) {
       }
     });
 
+    // Automatic resizing of graphics
     $scope.$watch(
          function () {
 	   var elem = $(idchart[0]).closest('div.visualize-chart');
